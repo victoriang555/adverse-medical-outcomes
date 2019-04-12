@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adverse Medical Reactions Helper</title>
+    <body style="background-image: url("question_mark_symptoms.png")"></body>
+</head>
+</head>
+<body>
+    <h1>
+        Welcome to the Adverse Medical Reactions Helper.
+    </h1>
+
+    <h2>
+      If you believe you have a medical emergency, please call 911 immediately.
+      If you are feeling unwell but are unsure about seeking medical attention,
+      this program can hopefully assist in that decision. It will provide you with
+      the percent probability of having a certain medical outcome based on the
+      information you provide below.
+    </h2>
+
+    <div>
+        <h3>We want to help consumers feeling ill after consuming a food, drug,
+          or cosmetic product make an informed decision about seeking medical attention.
+          DISCLAIMER: We are in not medical professionals.
+        </h3>
+        <h3> Please enter values into the most applicable dropdowns below.</h3>
+        <!-- Obtain gender, age, symptoms, and product industry data from user -->
+        <form method="post" action="/find_data" id="name_form">
+            <div>
+                <span>
+                    Gender:
+                </span>
+                <select name="gender">
+                    <option value="0" selected>Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </div>
+            <div>
+                <span>
+                    Age:
+                </span>
+                <input type="text" name="age">
+            </div>
+            <div>
+                <span>
+                    Product Category (something you consumed):
+                </span>
+                <select name="prod_category">
+                    {% for product_key in product_categories.keys() %}
+                    <option value="{{ product_categories[product_key]['id'] }}">
+                        {{ product_categories[product_key]['name'] }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <fieldset>
+                <legend>Choose the symptoms</legend>
+                {% for symptom in symptoms_list %}
+                <div>
+                    <input type="checkbox" id="{{ symptom }}" name="symptoms" value="{{ symptom }}">
+                    <label for="{{ symptom }}">{{ symptom.capitalize().replace("_", " ") }}</label>
+                </div>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Get Info" />
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+flask
+pandas
+scipy
+patsy
+numpy
+matplotlib
+pickle
+sqlalchemy 
+psycopg2 
+wikipedia 
+sklearn
+spacy
